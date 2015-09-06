@@ -88,7 +88,7 @@ public class Html5Video extends CordovaPlugin {
 			if (videoFileId != null) {
 				cordova.getActivity().runOnUiThread(new Runnable() {
 				     public void run() {
-				           webView.loadUrl("javascript:window.plugins.html5Video._setVideoUrl(" + videoId + ", " + videoFileId + ")");
+				           webView.loadUrl("javascript:window.plugins.html5Video._setVideoUrl(" + videoId + ", '" + videoFileId + "')");
 				     }
 				});
 				status = true;

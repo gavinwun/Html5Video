@@ -22,6 +22,7 @@ public class Html5Video extends CordovaPlugin {
 	
 	public final String ACTION_INITIALIZE = "initialize";
 	public final String ACTION_PLAY = "play";
+	public final String ACTION_SETVIDEO_URL = "setVideoUrl";
 
 	FileDataStore dataStore = new FileDataStore();
 	
@@ -80,6 +81,19 @@ public class Html5Video extends CordovaPlugin {
 				status = true;
 				
 				LOG.d("Html5Video", "Playing video with id: " + videoId);
+			}
+		} else if (action.equals(ACTION_SETVIDEO_URL)) {
+			final String videoId = args.getString(0);
+			final String videoFileId = args.getString(1);
+			if (videoFileId != null) {
+				cordova.getActivity().runOnUiThread(new Runnable() {
+				     public void run() {
+				           webView.loadUrl("javascript:window.plugins.html5Video._setVideoUrl(" + videoId + ", " + videoFileId + ")");
+				     }
+				});
+				status = true;
+				
+				LOG.d("Html5Video", "Setting src of html video id " + videoId + " with video id: " + videoFileId);
 			}
 		}
 

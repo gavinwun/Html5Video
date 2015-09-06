@@ -78,4 +78,26 @@ Html5Video.prototype._play = function(video) {
 	video.play();
 }
 
+Html5Video.prototype.setVideoUrl = function(videoId, videoFileId, callback) {
+	var me = this;
+	me._callbacks[videoFileId] = callback;
+
+	if (device.platform == 'Android' || device.platform == 'amazon-fireos') {
+		return cordova.exec(function(result) {			
+		}, function(err) {
+			console.error('html video error: ' + err);
+		}, 'Html5Video', 'setVideoUrl', [videoId, videoFileId]);
+	} else {
+		this._setVideoUrl(document.getElementById(videoId), videoFileId);
+	}
+}
+
+Html5Video.prototype._setVideoUrl = function(video, videoFileId) {
+	var me = this,
+		videoId = video.id;
+
+	video.src = me._videos[videoFileId];
+	//video.setAttribute('poster', video.getAttribute('poster'));		
+}
+
 module.exports = new Html5Video();

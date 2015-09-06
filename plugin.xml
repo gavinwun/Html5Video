@@ -9,7 +9,7 @@
 
   <name>Html5Video</name>
   <author>jaeger25</author>
-  <repo>https://github.com/jaeger25/Html5Video.git</repo>
+  <repo>https://github.com/gavinwun/Html5Video.git</repo>
   
   <js-module src="www/Html5Video.js" name="Html5Video">
     <clobbers target="plugins.html5Video" />
